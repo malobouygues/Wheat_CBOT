@@ -59,7 +59,7 @@ def calculate_spread_for_year(year):
     
     filtered['plot_date'] = filtered['date'].apply(lambda x: x.replace(year=2000))
     
-    return filtered[['plot_date', 'normalized_spread']]
+    return filtered[['plot_date', 'normalized_spread', 'date']]
 
 def calculate_historical_median(historical_spreads):
     all_data = pd.concat(historical_spreads, ignore_index=True)

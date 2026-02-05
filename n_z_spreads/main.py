@@ -31,6 +31,18 @@ else:
     if df_current is not None and len(df_current) > 0:
         plt.plot(df_current['plot_date'], df_current['normalized_spread'], 
                  label='Current Year (2026)', color='red', linewidth=2)
+        
+        last_date = df_current['date'].max()
+        target_date = last_date - pd.DateOffset(months=1)
+        
+        df_before_target = df_current[df_current['date'] <= target_date]
+        
+        if len(df_before_target) > 0:
+            previous_date = df_before_target['date'].max()
+            df_previous = df_before_target.copy()
+            
+            plt.plot(df_previous['plot_date'], df_previous['normalized_spread'], 
+                     linestyle='--', linewidth=2, color='gray', label=f'Previous Month ({previous_date.strftime("%Y-%m-%d")})')
     
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d-%b'))
     plt.xticks(rotation=0)

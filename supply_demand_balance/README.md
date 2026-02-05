@@ -38,7 +38,7 @@ The code groups data by month rather than just a linear time series.
 - If the January ratio is trending below the seasonal average of previous Januarys, the crop year will be tighter than the market anticipates
 - **Logic**: By visualizing the curve of stocks_to_use month by month, I can identify a direction
 
-## 3. Technical Implementation
+## 3. Technical Stack
 
 This tool prioritizes clean data structure to separate calculation logic from visualization.
 
