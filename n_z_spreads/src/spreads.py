@@ -1,9 +1,14 @@
 import pandas as pd
 import numpy as np
 from scipy.ndimage import gaussian_filter1d
+import os
 
 def load_contract_data(year, contract_code):
-    file_path = f"/Users/malo/PythonProjects/github/wheat/calendar-spreads/data/{contract_code}{year}.csv"
+    # Get the directory of this file (src/), go up one level, then into data/
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_dir = os.path.dirname(script_dir)  # Go up from src/ to n_z_spreads/
+    data_dir = os.path.join(project_dir, 'data')
+    file_path = os.path.join(data_dir, f"{contract_code}{year}.csv")
     df = pd.read_csv(file_path, header=None, names=['date', 'price', 'volume'])
     df['date'] = pd.to_datetime(df['date'])
     df = df.sort_values('date')
